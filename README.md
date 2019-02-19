@@ -1,1 +1,2 @@
-# all-the-vectors
+# numpy vectors
+
