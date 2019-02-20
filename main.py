@@ -1,5 +1,7 @@
 from vector import Vector
 from functools import reduce
+import numpy as np
+from math import pi
 
 vectors = []
 with open('vectors.txt') as f:
@@ -22,7 +24,14 @@ print(v1, v1.norm())
 # lengths of each vector sorted from shortest to largest
 # and dispay the shortest one
 
+lengths = np.array([v.norm() for v in vectors])
+sorted_lengths = np.sort(lengths)
+print('lengths:', sorted_lengths, 'first:', sorted_lengths[0])
+
 # part 2
 # find the angle, theta, between each set
 # i.e., theta between 1 and 2 ... 2 and 3 ... etc
 # should have 4 thetas
+
+thetas = [(180 / pi) * np.arccos(v1.dot(v2) / (v1.norm() * v2.norm())) for v1, v2 in zip(vectors, vectors[1:])]
+print('thetas:', thetas)
